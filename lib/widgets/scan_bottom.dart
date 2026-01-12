@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_scan/providers/scan_list_provider.dart';
 
 class ScanButton extends StatelessWidget {
   const ScanButton({Key? key}) : super(key: key);
@@ -12,6 +14,13 @@ class ScanButton extends StatelessWidget {
       ),
       onPressed: () {
         print('Botó polsat!');
+        String barCodeScanres = 'geo:wef';
+        final scanListProvider =
+            Provider.of<ScanListProvider>(context, listen: false);
+        scanListProvider.nouScan(barCodeScanres);
+
+        String barCodeScanres1 = 'https:\\:wef';
+        scanListProvider.nouScan(barCodeScanres1);
       },
     );
   }
