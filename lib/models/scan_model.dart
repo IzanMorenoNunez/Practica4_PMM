@@ -1,9 +1,19 @@
 import 'dart:convert';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart' show LatLng;
+
 class ScanModel {
   int? id;
   String? tipus;
   String valor;
+
+  LatLng getLatng() {
+    final latLng = this.valor.substring(4).split(',');
+    final latitude = double.parse(latLng[0]);
+    final longitude = double.parse(latLng[1]);
+
+    return LatLng(latitude, longitude);
+  }
 
   ScanModel({
     this.id,

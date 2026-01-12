@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_scan/providers/scan_list_provider.dart';
+import 'package:qr_scan/utils/utils.dart';
 
 class ScanTiles extends StatelessWidget {
   final String tipus;
@@ -26,7 +27,8 @@ class ScanTiles extends StatelessWidget {
                     alignment: Alignment.centerRight),
               ),
               onDismissed: (DismissDirection direccio) {
-                Provider.of<ScanListProvider>(context, listen: false).esborraPerID(scans[index].id!);
+                Provider.of<ScanListProvider>(context, listen: false)
+                    .esborraPerID(scans[index].id!);
               },
               child: ListTile(
                 leading: Icon(this.tipus == 'http'
@@ -35,7 +37,9 @@ class ScanTiles extends StatelessWidget {
                 title: Text(scans[index].valor),
                 subtitle: Text(scans[index].id.toString()),
                 trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
-                onTap: () {},
+                onTap: () {
+                  launchURL(context, scans[index]);
+                },
               ),
             ));
   }
